@@ -19,14 +19,13 @@
     <link rel="stylesheet" href="./sass/main.scss" />
     <!-- <link rel="stylesheet" href="./partials/moviesContainer.css" />  || zmodyfikowano przez Dom!n: plik przeniesiony do /sass/partials i zaimportowany w main.scss -->
   </head>
+
   <body>
     <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony. -->
-    <include src="./partials/header.html"></include>
-    <include src="./partials/movies-container.html"></include>
-    <include src="./partials/library.html"></include>
-    <include src="./partials/footer.html"></include>
-    <div class="modal-overlay"></div>
-    <div class="modal-window hidden"></div>
+    <include src="./partials/library-header.html"></include>
+    <include src="./partials/library-library.html"></include>
+    <include src="./partials/library-footer.html"></include>
+
     <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
     <script src="./index.js" type="module"></script>
     <!-- <script src="./js/fetchMovies.js" type="module"></script>

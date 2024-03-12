@@ -1,0 +1,152 @@
+.footer-home {
+  background-color: #f7f7f7; // zmiana koloru tła na biały
+  display: flex;
+  justify-content: center; // wyśrodkowanie zawartości stopki
+  align-items: center; // wycentrowanie zawartości w pionie
+  height: 80px;
+
+  .footer-container {
+    display: flex;
+    align-items: center; // zapewnienie wyrównania ikony serca z tekstem
+    gap: 5px; // dodanie odstępu między elementami
+
+    .footer-end,
+    .footer-students {
+      font-size: 16px; // dostosowanie rozmiaru czcionki
+      color: #545454; // zmiana koloru czcionki na ciemnoszary
+    }
+
+    .footer-icon {
+      fill: #ff6b08; // upewnienie się, że ikona serca ma kolor czerwony
+      height: auto;
+    }
+
+    #openModal {
+      cursor: pointer; // zmiana kursora na wskaźnik podczas najechania
+      font-weight: bold; // pogrubienie tekstu dla "GoIT Students"
+      &:hover {
+        text-decoration: underline; // podkreślenie tekstu podczas najechania
+      }
+    }
+  }
+}
+
+// Style dla okna modalnego
+.windows-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: none; // na początku niewidoczny
+
+  .modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%; // Szerokość modalu
+    max-width: 600px; // Maksymalna szerokość
+    position: absolute; // Absolutne pozycjonowanie wewnątrz .windows-modal
+    top: 50%; // Połowa wysokości okna przeglądarki
+    left: 50%; // Połowa szerokości okna przeglądarki
+    transform: translate(
+      -50%,
+      -50%
+    ); // Przesunięcie elementu o -50% jego własnej wysokości i szerokości
+    height: 550px;
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .student-card {
+      text-align: center;
+      padding: 20px; // Odstęp wewnątrz karty ucznia
+
+      h3 {
+        margin-top: 20px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #333;
+      }
+    }
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center; // Wyśrodkowanie przycisków w poziomie
+  position: absolute;
+  bottom: 20px; // Odstęp od dołu karty modalu
+  left: 50%;
+  transform: translateX(-50%); // Wyśrodkowanie kontenera w poziomie
+  width: 100%; // Kontener na całą szerokość, aby umożliwić centrowanie dzieci
+
+  button {
+    width: 136px;
+    padding: 10px 15px;
+    margin: 0 10px; // Dostosowanie marginesu między przyciskami
+    border: none;
+    background-color: #ff6b01;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; // Animacja tła
+
+    &:hover {
+      background-color: #ff4901;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .windows-modal .modal-content {
+    width: 80%; // Lekkie zmniejszenie szerokości na urządzeniach tabletowych
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .windows-modal .modal-content {
+    width: 80%; // Lekkie zmniejszenie szerokości na urządzeniach tabletowych
+    max-width: 400px;
+  }
+
+  .footer-home {
+    height: auto; // Wysokość stopki dostosowana do zawartości
+    padding: 20px; // Dodatkowe wypełnienie
+
+    .footer-container {
+      flex-direction: column; // Elementy w kolumnie na małych ekranach
+      align-items: center; // Wyrównanie do lewej
+
+      .footer-end,
+      .footer-students {
+        text-align: left; // Wyrównanie tekstu do lewej
+        font-size: 12px; // Pomniejszenie czcionki
+      }
+
+      .footer-icon {
+        width: 16px; // Zwiększenie ikony serca
+        height: 16px; // Zwiększenie ikony serca
+        margin-right: 5px; // Margines po prawej stronie ikony
+      }
+
+      #openModal {
+        margin-top: 5px; // Odstęp od góry dla linku
+      }
+    }
+  }
+}

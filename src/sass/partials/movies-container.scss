@@ -1,0 +1,161 @@
+/* Styl główny */
+* {
+  box-sizing: border-box; /* Ustawia box-model dla wszystkich elementów na border-box */
+  margin: 0;
+  padding: 0;
+}
+
+/* Ustawienia dla całej sekcji */
+section {
+  display: flex; /* Ustawia sekcję jako kontener flexbox */
+  flex-direction: column; /* Elementy w sekcji będą ułożone w pionie */
+  align-items: center; /* Elementy wyśrodkowane na osi poziomej */
+}
+
+/* Stylizacja kontenera dla filmów */
+.container {
+  max-width: 1440px; /* Ustawia maksymalną szerokość kontenera */
+  display: flex; /* Ustawia kontener jako kontener flexbox */
+  justify-content: center; /* Elementy wyrównane do środka na osi poziomej */
+  flex-wrap: wrap; /* Pozwala elementom zawinąć się do następnej linii */
+}
+
+/* Stylizacja listy filmów */
+.movie__list {
+  list-style: none; /* Usuwa domyślne punkty z listy */
+  width: 100%; /* Szerokość listy filmów zajmie 100% dostępnego miejsca */
+  display: flex; /* Ustawia listę jako kontener flexbox */
+  justify-content: space-around; /* Elementy rozmieszczone równomiernie z odstępami między nimi */
+  flex-wrap: wrap; /* Pozwala elementom zawinąć się do następnej linii */
+  //column-gap: 8px; /* Dodatkowy odstęp między elementami (zakomentowane) */
+}
+
+/* Stylizacja obrazka w karcie filmu */
+.movie-card img {
+  display: block; /* Ustawia obrazek jako blok (usuwa domyślne marginesy) */
+  border-radius: 5px; /* Zaokrągla rogi obrazka */
+  width: 100%; /* Szerokość obrazka zajmie 100% dostępnego miejsca */
+  height: auto; /* Wysokość dopasowuje się do proporcji obrazka */
+}
+
+/* Stylizacja opisu filmu */
+.info {
+  // padding-top: 12px; /* Dodaje górny padding do opisu */
+  display: flex; /* Ustawia opis jako kontener flexbox */
+  flex-direction: column; /* Elementy opisu umieszczone jeden pod drugim */
+}
+
+/* Stylizacja paginacji */
+.pagination {
+  margin-top: 20px; /* Dodaje górny margin do paginacji */
+  display: flex; /* Ustawia paginację jako kontener flexbox */
+  align-items: center; /* Elementy paginacji wyrównane do środka na osi pionowej */
+  gap: 20px; /* Dodaje odstęp między elementami paginacji */
+}
+
+.page {
+  padding: 10px; /* Dodaje padding do elementów paginacji */
+  border: none; /* Usuwa domyślną ramkę z elementów paginacji */
+  background-color: #007bff; /* Ustawia kolor tła elementów paginacji */
+  color: white; /* Ustawia kolor tekstu elementów paginacji */
+  border-radius: 5px; /* Zaokrągla rogi elementów paginacji */
+  cursor: pointer; /* Zmienia kursor myszy na wskazujący nad elementami paginacji */
+}
+
+.current {
+  padding: 10px; /* Ustawia padding dla bieżącej strony paginacji */
+}
+
+.info p {
+  line-height: 24px; /* Ustawia odstęp między wierszami tekstu w opisie */
+  color: #000000; /* Ustawia kolor tekstu w opisie */
+}
+
+.info .details p {
+  line-height: 24px; /* Ustawia odstęp między wierszami tekstu w szczegółach */
+  color: #ff6b08; /* Ustawia kolor tekstu dla szczegółów (pomarańczowy) */
+}
+
+/* Stylizacja dla różnych urządzeń */
+
+@media screen and (min-width: 1280px) {
+  /* Dla ekranów o szerokości 1280px lub większej */
+  .movie__list {
+    margin: 60px 0px; /* Dodaje marginesy do listy filmów */
+    row-gap: 32px; /* Dodatkowy odstęp między elementami (zakomentowane) */
+  }
+
+  .movie-card {
+    margin-bottom: 32px; /* Dodaje dolny margines do kart filmów */
+    width: 395px; /* Ustawia szerokość kart filmów */
+    height: 634px; /* Ustawia wysokość kart filmów */
+  }
+
+  .movie-card img {
+    height: 574px; /* Ustawia wysokość obrazków w kartach filmów */
+  }
+
+  .info {
+    padding-top: 12px; /* Dodaje górny padding do opisu */
+  }
+
+  .info p {
+    font-size: 20px; /* Ustawia rozmiar czcionki dla opisu filmów */
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  /* Dla ekranów o szerokości od 768px do 1279px */
+  .movie__list {
+    margin: 60px 0px; /* Dodaje marginesy do listy filmów */
+    row-gap: 32px; /* Dodatkowy odstęp między elementami (zakomentowane) */
+  }
+
+  .movie-card {
+    margin-bottom: 32px; /* Dodaje dolny margines do kart filmów */
+    width: 336px; /* Ustawia szerokość kart filmów */
+    height: 494px; /* Ustawia wysokość kart filmów */
+  }
+
+  .movie-card img {
+    height: 455px; /* Ustawia wysokość obrazków w kartach filmów */
+  }
+
+  .info {
+    padding-top: 10px; /* Dodaje górny padding do opisu */
+  }
+
+  .info p {
+    font-size: 12px; /* Ustawia rozmiar czcionki dla opisu filmów */
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  /* Dla ekranów o szerokości od 320px do 767px */
+  .movie__list {
+    margin: 20px 0px; /* Dodaje marginesy do listy filmów */
+    row-gap: 20px; /* Dodatkowy odstęp między elementami (zakomentowane) */
+  }
+  .movie-card {
+    margin-bottom: 20px; /* Dodaje dolny margines do kart filmów */
+    width: 280px; /* Ustawia szerokość kart filmów */
+    height: 443px; /* Ustawia wysokość kart filmów */
+  }
+
+  .movie-card img {
+    height: 402px; /* Ustawia wysokość obrazków w kartach filmów */
+  }
+
+  .info {
+    padding-top: 10px; /* Dodaje górny padding do opisu */
+  }
+
+  .info p {
+    font-size: 12px; /* Ustawia rozmiar czcionki dla opisu filmów */
+  }
+
+  .pagination {
+    width: 100%; /* Ustawia szerokość paginacji na 100% */
+    justify-content: center; /* Wyśrodkowuje paginację */
+  }
+}
