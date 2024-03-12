@@ -4,14 +4,4 @@
  */
 
 // Style dla pliku z przykładem HTML fragmentu
-@import './partials/header.scss';
-@import './partials/library.scss';
-@import './partials/footer.scss';
-@import './partials/library-header.scss';
-@import './partials/library-library.scss';
-@import './partials/library-footer.scss';
-@import './partials/modal.scss';
-@import './partials/movies-container.scss';
-
-// importy stylów proszę wklejać powyżej tego komentarza
-@import './partials/mainstyle.scss';
+@import './example';
