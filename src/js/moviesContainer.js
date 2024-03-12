@@ -60,7 +60,7 @@ videoSection.addEventListener('click', async e => {
             <button class="modal-window__close" id="close-modal">
 
               <svg width="30" height="30">
-                <use href="../images/icons.svg#icon-close"></use>
+                <use href="#"></use>
               </svg>
             </button>
             <div>
