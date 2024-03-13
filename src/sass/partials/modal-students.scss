@@ -1,7 +1,4 @@
 .windows-modal {
-  //   display: flex;
-  //   display: block;
-  //justify-content: center; //do usunięcia. poprawia położenie modalu na osi x
   align-items: center;
   position: fixed;
   top: 0;
@@ -15,7 +12,7 @@
   .modal-content {
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     width: 75%;
     max-width: 800px;
     position: relative; /* Pozycja relatywna */
