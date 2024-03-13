@@ -89,24 +89,6 @@
   width: 100%;
 }
 
-button {
-  width: 136px;
-  padding: 10px 15px;
-  margin: 0 10px;
-  border: none;
-  background-color: #ff6b01;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #ff4901;
-    transform: scale(0.99);
-    box-shadow: 0 0 50px rgba(200, 200, 200, 0.8);
-  }
-}
-
 @media (max-width: 768px) {
   .modal-content {
     width: 80%;
@@ -158,4 +140,15 @@ button {
   .student-item {
     font-size: 1rem;
   }
+}
+
+.modal-prev {
+  width: 136px;
+  padding: 10px 15px;
+  margin: 0 10px;
+}
+.modal-next {
+  width: 136px;
+  padding: 10px 15px;
+  margin: 0 10px;
 }

@@ -1,0 +1,14 @@
+.button-standard {
+  border: none;
+  background-color: #ff6b01;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ff4901;
+    transform: scale(0.99);
+    box-shadow: 0 0 50px rgba(200, 200, 200, 0.8);
+  }
+}
