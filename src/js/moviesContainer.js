@@ -57,43 +57,45 @@ videoSection.addEventListener('click', async e => {
     const movieDetails = await fetchMoviesByID(movieId);
     console.log(movieDetails);
     const modalContent = `
-        <div>
-          <div>
-            <button id="close-modal">
-              <svg width="30" height="30">
-                <use href="./images/icons.svg#icon-close" />
-              </svg>
-            </button>
-            <div>
-              <img src="https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}" alt="${
-      movieDetails.title
-    }" width="375" height="478" />
-            </div>
-            <div>
-              <h1>${movieDetails.title}</h1>
-              <div>
-                <div>
-                  <p>Vote/Votes</p>
-                  <p>Popularity</p>
-                  <p>Original Title</p>
-                  <p>Genre</p>
-                </div>
-                <div>
-                  <p>${movieDetails.vote_average} / ${movieDetails.vote_count}</p>
-                  <p>${movieDetails.popularity}</p>
-                  <p>${movieDetails.original_title}</p>
-                  <p>${movieDetails.genres.map(genre => genre.name).join(', ')}</p>
-                </div>
-              </div>
-              <h2>About</h2>
-              <p>${movieDetails.overview}</p>
-              <div class="modal-buttons">
-              <button class="add-to-watched" id="watched-btn">add to watched</button>
-              <button class="add-to-queue" id="queue-button">add to queue</button>
-              </div>
-            </div>
+    <div>
+    <div>
+      <button class="modal-close" id="close-modal">
+        <svg width="30" height="30">
+          <use href="./images/icons.svg#icon-close" />
+        </svg>
+      </button>
+      <div>
+        <img class="modal-image" src="https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}" alt="${
+movieDetails.title
+}" />
+      </div>
+      <div class="modal-description">
+        <h1>${movieDetails.title}</h1>
+        <div class="modal-rates">
+          <div class="modal-rates__titles">
+            <p>Vote/Votes</p>
+            <p>Popularity</p>
+            <p>Original Title</p>
+            <p>Genre</p>
+          </div>
+          <div class="modal-rates__results">
+            <p>${movieDetails.vote_average} / ${movieDetails.vote_count}</p>
+            <p>${movieDetails.popularity}</p>
+            <p>${movieDetails.original_title}</p>
+            <p>${movieDetails.genres.map(genre => genre.name).join(', ')}</p>
           </div>
         </div>
+        <div>
+        <dt>ABOUT</dt>
+        <dd>${movieDetails.overview}</dd>
+        </div>
+        <div class="modal-buttons">
+        <button data-movie-id="${movieId}" type="button" class="add-to-watched" id="watched-btn">add to watched</button>
+        <button data-movie-id="${movieId}" type="button" class="add-to-queue" id="queue-button">add to queue</button>
+        </div>
+      </div>
+    </div>
+  </div>
       `;
     modalWindow.innerHTML = modalContent;
     modalWindow.classList.remove('hidden');
