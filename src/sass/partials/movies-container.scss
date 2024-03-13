@@ -1,3 +1,21 @@
+.paginator ul {
+  display: flex;
+  gap: 15px;
+}
+
+.paginator ul li {
+  cursor: pointer;
+}
+
+.paginator ul li.btn {
+  background-color: rgba(247, 247, 247, 1);
+  // color: red;
+}
+
+.paginator ul li.active {
+  background-color: #ff6b08;
+}
+
 /* Ustawienia dla całej sekcji */
 section {
   display: flex;

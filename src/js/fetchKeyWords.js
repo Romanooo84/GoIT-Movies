@@ -1,6 +1,10 @@
-import Notiflix from 'notiflix';
 const searchForm = document.querySelector('.header-home-form');
 const moviesContainer = document.querySelector('.movie__list');
+
+const prevPage = document.querySelector('#prev');
+const nextPage = document.querySelector('#next');
+const currPage = document.querySelector('#current');
+
 let page = 1;
 let genre;
 
@@ -66,6 +70,7 @@ const searchingInput = async event => {
   event.preventDefault();
   const querySearch = event.target.elements.searchQuery.value.trim();
   console.log(querySearch);
+  page = 1;
 
   await fetchKeyMovies(querySearch, page)
     // .then(movies => console.log(movies))
@@ -81,6 +86,7 @@ const searchingInput = async event => {
     })
 
     .catch(error => console.log(error));
+
   searchForm.reset();
 };
 searchForm.addEventListener('submit', searchingInput);
