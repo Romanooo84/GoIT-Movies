@@ -39,6 +39,7 @@
 
 .student-photo {
   height: 400px;
+  width: 260px;
   object-fit: cover;
 }
 
@@ -116,7 +117,8 @@
   }
 
   .student-photo {
-    margin-top: 10px;
+    width: 235px;
+    margin-top: 15px;
     height: 300px;
     max-height: 45vh;
     padding: 0 0.7rem;
