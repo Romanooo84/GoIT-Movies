@@ -15,12 +15,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     width: 75%;
     max-width: 800px;
-    position: relative; /* Pozycja relatywna */
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding-bottom: 60px; /* Dodatkowa przestrzeń na przyciski */
-    overflow: auto; /* Umożliwia przewijanie, jeśli treść jest zbyt długa */
+    padding-bottom: 60px;
+    overflow: auto;
   }
 }
 
@@ -44,7 +44,7 @@
 
 .student-info {
   width: 100%;
-  align-items: center;
+  align-items: end;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,6 +112,9 @@ button {
     width: 80%;
     max-width: 600px;
   }
+  .student-info {
+    align-items: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -140,6 +143,7 @@ button {
   .student-info {
     margin-top: 5px;
     padding: 0 0.5rem;
+    align-items: center;
   }
 
   .student-name {
