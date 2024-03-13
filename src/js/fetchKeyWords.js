@@ -3,7 +3,8 @@ import Notiflix from 'notiflix';
 const searchForm = document.querySelector('.header-home-form');
 const moviesContainer = document.querySelector('.movie__list');
 let page = 1;
-let genre;
+const headerAlert = document.querySelector('.header-home-item');
+headerAlert.style.opacity = '0';
 
 const fetchKeyMovies = async (querySearch, page) => {
   const API_KEY = 'e7c930d9ee21da94f8fc3257d387eced';
@@ -34,6 +35,7 @@ const renderKeyMovies = movies => {
         filmGenreId = 'Genre is not available';
       }
       return `<li class="movie-card">
+      <div class="card">
             <a href="${poster_path}" data-movie-id="${id}">
               <img src="${
                 poster_path
@@ -47,12 +49,10 @@ const renderKeyMovies = movies => {
               </p>
               <div class="details">
               <p class="info-item">
-              <b>${filmGenreId}</b>
-            </p>
-              <p class="info-item">
-                <b>| ${release_date.slice(0, 4)}</b>
+              <b>${filmGenreId} | ${release_date.slice(0, 4)}</b>
               </p>
               </div>
+            </div>
             </div>
           </li>`;
     })
@@ -68,9 +68,10 @@ const searchingInput = async event => {
     // .then(movies => console.log(movies))
     .then(movies => {
       if (querySearch === '' || movies.length <= 0) {
-        Notiflix.Notify.failure(
-          'Sorry, there are no movies matching your search query. Please try again.',
-        );
+        // Notiflix.Notify.failure(
+        //   'Sorry, there are no movies matching your search query. Please try again.',
+        // );
+        headerAlert.style.opacity = '1';
       } else {
         const moviesMarkup = renderKeyMovies(movies);
         moviesContainer.innerHTML = moviesMarkup;
@@ -81,4 +82,3 @@ const searchingInput = async event => {
   searchForm.reset();
 };
 searchForm.addEventListener('submit', searchingInput);
-
