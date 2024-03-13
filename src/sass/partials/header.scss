@@ -13,8 +13,8 @@ a {
     
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('../images/header.jpg');
-    height: 200px;
-    max-width: 1440px;
+    height: 216px;
+   width: 1280px;
     flex-shrink: 0;
     margin: 0 auto;
 background-size: cover;
@@ -29,7 +29,7 @@ background-image: url('../images/header.jpg');
 }}
 
 .header-home-container {
-max-width: 11400px;
+max-width: 12800px;
 align-items: center;
 margin-top: 40px;
 margin-left: 50px;
@@ -124,11 +124,19 @@ border-bottom: 1px solid #fff ;
     left: 66%;
     fill: #fff;
 }
+.header-home-item {
+    font-weight: 400;
+font-size: 14px;
+text-align: center;
+color: #ff001b;
+display: block;
+margin-top: 10px;
+}
     /* //------------------ DESKTOP------------------------------ // */
 @media screen and (min-width: 1280px) {
     .header-home{
-          
-        height: 230px;
+          max-width: 1280px;
+        height: 216px;
         flex-shrink: 0;
         margin: 0 auto;
         background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -147,8 +155,9 @@ border-bottom: 1px solid #fff ;
     }
 }
 .header-home-container {
-    max-width: 1440px;
-    padding: 45px 32px;
+    width: 1280px;
+    padding: 32px 32px 41px;
+    
     margin: 0 auto;
 }
 .header-home-film {
@@ -186,7 +195,7 @@ font-weight: 400;
 font-size: 14px
 }
 .header-home-button {
-    left: 92%;
+    left: 90%;
     top: 25%;
 }
 }
@@ -195,7 +204,7 @@ font-size: 14px
     /* //-------------------- TABLET------------------------------ // */
 @media screen and (min-width: 768px) and (max-width: 1279px) {
     .header-home{
-          
+          max-width: 1280px;
         height: 230px;
         flex-shrink: 0;
         margin: 0 auto;
@@ -215,8 +224,8 @@ font-size: 14px
     }
 }
 .header-home-container {
-    max-width: 1440px;
-    padding: 45px 25px;
+    width: 1280px;
+    padding: 40px 32px;
     margin: 0 auto;
 }
 .header-home-film {
@@ -257,7 +266,7 @@ font-size: 14px;
     font-weight: 400;
 }
 .header-home-button {
-    left: 92%;
+    left: 88%;
     top: 25%;
 }
 }
@@ -265,32 +274,30 @@ font-size: 14px;
     /* // --------------------MOBILE------------------------------ // */
     @media screen and (min-width: 320px) and (max-width: 767px) {
         .header-home{
-          
-        height: 230px;
-        flex-shrink: 0;
-        margin: 0 auto;
+        max-width: 1280px;
+            height: 230px;
+            flex-shrink: 0;
+            margin: 0 auto;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+            url('../images/header.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            }
+    @media (min-device-pixel-ratio:2),
+    (-webkit-min-device-pixel-ratio:2),
+    (min-resolution:192dpi),
+    (min-resolution:2dppx) {
+        .header-home {
         background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header.jpg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+            url('../images/header2x.jpg');
         }
-@media (min-device-pixel-ratio:2),
-(-webkit-min-device-pixel-ratio:2),
-(min-resolution:192dpi),
-(min-resolution:2dppx) {
-    .header-home {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url('../images/header2x.jpg');
     }
-}
-.header-home-container {
-    max-width: 1440px;
-    padding: 50px 20px;
-    margin: 0 auto;
-    justify-content: space-between;
-    display: flex;
-}
+    .header-home-container {
+        width: 1280px;
+        padding: 40px 20px 54px;
+        margin: 0 auto;
+    }
 .header-home-film {
     margin:0 auto;
 }
@@ -311,6 +318,9 @@ text-transform: uppercase;
 text-align: center;
 
 }
+.header-home-form {
+    width: 280px;
+}
 .header-home-form-container {
     width: 100%;
     max-width: 320px;
@@ -326,7 +336,7 @@ font-weight: 400;
 font-size: 14px
 }
 .header-home-button {
-    left: 90%;
+    left: 85%;
     top: 25%;
 }
 }
