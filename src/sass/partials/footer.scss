@@ -1,31 +1,31 @@
 .footer-home {
-  background-color: #f7f7f7; // zmiana koloru tła na biały
+  background-color: #f7f7f7;
   display: flex;
-  justify-content: center; // wyśrodkowanie zawartości stopki
-  align-items: center; // wycentrowanie zawartości w pionie
+  justify-content: center;
+  align-items: center;
   height: 80px;
 
   .footer-container {
     display: flex;
-    align-items: center; // zapewnienie wyrównania ikony serca z tekstem
-    gap: 5px; // dodanie odstępu między elementami
+    align-items: center;
+    gap: 5px;
 
     .footer-end,
     .footer-students {
-      font-size: 16px; // dostosowanie rozmiaru czcionki
-      color: #545454; // zmiana koloru czcionki na ciemnoszary
+      font-size: 16px;
+      color: #545454;
     }
 
     .footer-icon {
-      fill: #ff6b08; // upewnienie się, że ikona serca ma kolor czerwony
+      fill: #ff6b08;
       height: auto;
     }
 
     #openModal {
-      cursor: pointer; // zmiana kursora na wskaźnik podczas najechania
-      font-weight: bold; // pogrubienie tekstu dla "GoIT Students"
+      cursor: pointer;
+      font-weight: bold;
       &:hover {
-        text-decoration: underline; // podkreślenie tekstu podczas najechania
+        text-decoration: underline;
       }
     }
   }
@@ -43,21 +43,18 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
-  display: none; // na początku niewidoczny
+  display: none;
 
   .modal-content {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 50%; // Szerokość modalu
-    max-width: 600px; // Maksymalna szerokość
-    position: absolute; // Absolutne pozycjonowanie wewnątrz .windows-modal
-    top: 50%; // Połowa wysokości okna przeglądarki
-    left: 50%; // Połowa szerokości okna przeglądarki
-    transform: translate(
-      -50%,
-      -50%
-    ); // Przesunięcie elementu o -50% jego własnej wysokości i szerokości
+    width: 50%;
+    max-width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 550px;
 
     .close {
@@ -71,7 +68,7 @@
 
     .student-card {
       text-align: center;
-      padding: 20px; // Odstęp wewnątrz karty ucznia
+      padding: 20px;
 
       h3 {
         margin-top: 20px;
@@ -87,23 +84,23 @@
 
 .buttons-container {
   display: flex;
-  justify-content: center; // Wyśrodkowanie przycisków w poziomie
+  justify-content: center;
   position: absolute;
-  bottom: 20px; // Odstęp od dołu karty modalu
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%); // Wyśrodkowanie kontenera w poziomie
-  width: 100%; // Kontener na całą szerokość, aby umożliwić centrowanie dzieci
+  transform: translateX(-50%);
+  width: 100%;
 
   button {
     width: 136px;
     padding: 10px 15px;
-    margin: 0 10px; // Dostosowanie marginesu między przyciskami
+    margin: 0 10px;
     border: none;
     background-color: #ff6b01;
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s; // Animacja tła
+    transition: background-color 0.3s;
 
     &:hover {
       background-color: #ff4901;
@@ -113,39 +110,39 @@
 
 @media (max-width: 768px) {
   .windows-modal .modal-content {
-    width: 80%; // Lekkie zmniejszenie szerokości na urządzeniach tabletowych
+    width: 80%;
     max-width: 600px;
   }
 }
 
 @media (max-width: 480px) {
   .windows-modal .modal-content {
-    width: 80%; // Lekkie zmniejszenie szerokości na urządzeniach tabletowych
+    width: 80%;
     max-width: 400px;
   }
 
   .footer-home {
-    height: auto; // Wysokość stopki dostosowana do zawartości
-    padding: 20px; // Dodatkowe wypełnienie
+    height: auto;
+    padding: 20px;
 
     .footer-container {
-      flex-direction: column; // Elementy w kolumnie na małych ekranach
-      align-items: center; // Wyrównanie do lewej
+      flex-direction: column;
+      align-items: center;
 
       .footer-end,
       .footer-students {
-        text-align: left; // Wyrównanie tekstu do lewej
-        font-size: 12px; // Pomniejszenie czcionki
+        text-align: left;
+        font-size: 12px;
       }
 
       .footer-icon {
-        width: 16px; // Zwiększenie ikony serca
-        height: 16px; // Zwiększenie ikony serca
-        margin-right: 5px; // Margines po prawej stronie ikony
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
       }
 
       #openModal {
-        margin-top: 5px; // Odstęp od góry dla linku
+        margin-top: 5px;
       }
     }
   }

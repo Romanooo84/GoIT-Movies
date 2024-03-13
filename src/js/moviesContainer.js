@@ -23,17 +23,19 @@ const renderMovies = movies => {
       const genres = movieDetails.genres.map(genre => genre.name).join(', ');
 
       const html = `<li class="movie-card">
-        <a href="${movie.poster_path}" data-movie-id="${movie.id}">
-          <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}"/>
-        </a>
-        <div class="info">
-          <p class="info-item">
-            <b> ${movie.title}</b>
-          </p>
+        <div class="card">
+          <a href="${movie.poster_path}" data-movie-id="${movie.id}">
+            <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}"/>
+          </a>
+          <div class="info">
+            <p class="info-item">
+              <b> ${movie.title}</b>
+            </p>
             <div class="details">
-          <p class="info-item">
-            <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
-          </p>
+              <p class="info-item">
+                <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
+              </p>
+            </div>
           </div>
         </div>
       </li>`;
