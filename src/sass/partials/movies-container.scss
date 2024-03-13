@@ -25,6 +25,7 @@ section {
   transition: transform 0.25s linear;
   &:hover {
     transform: scale(0.99);
+    box-shadow: 0 0 50px rgba(200, 200, 200, 0.9);
   }
 }
 
