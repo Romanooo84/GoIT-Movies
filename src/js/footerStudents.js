@@ -1,6 +1,6 @@
 // Otwarcie okna modalnego
 document.getElementById('openModal').addEventListener('click', function () {
-  document.getElementById('studentModal').style.display = 'flex'; // zmiana na flex aby centrować modal
+  document.getElementById('studentModal').style.display = 'block'; // zmiana na flex aby centrować modal
   showStudent(currentIndex); // Pokaż zawartość modalną dla pierwszego uczestnika
 });
 
@@ -11,7 +11,7 @@ let currentIndex = 0;
 function showStudent(index) {
   const cards = document.querySelectorAll('.student-card');
   cards.forEach(card => (card.style.display = 'none'));
-  cards[index].style.display = 'block';
+  cards[index].style.display = 'flex';
 }
 
 // Przypisanie obsługi zdarzeń dla przycisków nawigacyjnych i zamknięcia wewnątrz modala
@@ -27,7 +27,7 @@ function assignNavigationHandlers() {
       currentIndex = (currentIndex + 1) % document.querySelectorAll('.student-card').length;
       showStudent(currentIndex);
     } else if (
-      event.target.matches('.close') ||
+      event.target.matches('.btn-close') ||
       event.target === document.getElementById('studentModal')
     ) {
       document.getElementById('studentModal').style.display = 'none';
