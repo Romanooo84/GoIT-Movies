@@ -13,12 +13,11 @@
       width: 280px;
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   width: 704px;
-  padding-top: 40px;
-  padding-left: 36px;
-  padding-right: 72px;
-      }
+  padding: 40px 72px 40px 36px;
+}
 @media screen and (min-width: 1280px) {
   width: 806px;
+  padding: 40px 12px;
       }
     }
   
@@ -36,9 +35,17 @@
   }
   
   &-image {
-    max-width: 240px;
-    max-height: 357px;
-    border-radius: 5px;
+    width: 240px;
+    height: 357px;
+    border-radius: 5px; 
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+      width: 264px;
+      height: 374px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 375px;
+      height: 478px;
+    }
   }
    &-description {
     display: flex;
@@ -46,10 +53,16 @@
     gap: 20px;
   
     h1 {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.17;}
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.17;}
+      line-height: 1.17;
+      @media screen and (min-width: 1280px) {
+        font-size: 30px;
+        line-height: 1.17;
+      }
+    
     dt {
       font-size: 12px;
       font-weight: 500;
@@ -61,9 +74,13 @@
       line-height: 1.67;
     }
    }
+
    &-rates {
     display: flex;
     gap: 29px;
+    @media screen and (min-width: 1280px) {
+      gap: 85px;
+    }
 
     &__vote {
       border-radius: 5px;
@@ -110,6 +127,14 @@
   &-button {
     height: 44px;
     width: 100px;
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+      width: 125px;   
+      gap: 15px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 136px;
+      gap: 15px;
+    }
      &__queue{
 background-color: white;
 color: black;
@@ -130,6 +155,10 @@ border: 1px solid #000000
     @media screen and (min-width: 768px) and (max-width: 1279px) {
       flex-direction: row;
       gap: 68px;
+          }
+    @media screen and (min-width: 1280px) {
+      flex-direction: row;
+       gap: 16px;
           }
   }
   
