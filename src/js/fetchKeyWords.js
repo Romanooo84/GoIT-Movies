@@ -1,12 +1,17 @@
+import Notiflix from 'notiflix';
+
 const searchForm = document.querySelector('.header-home-form');
 const moviesContainer = document.querySelector('.movie__list');
 
-const prevPage = document.querySelector('#prev');
-const nextPage = document.querySelector('#next');
-const currPage = document.querySelector('#current');
+const prevPage = document.querySelector('#prevQuery');
+const nextPage = document.querySelector('#nextQuery');
+let currPage = document.querySelector('#currentQuery');
+const paginationPopular = document.querySelector('.pagination');
+const paginationQuery = document.querySelector('.pagination_for_query');
 
 let page = 1;
 let genre;
+let querySearch;
 
 const fetchKeyMovies = async (querySearch, page) => {
   const API_KEY = 'e7c930d9ee21da94f8fc3257d387eced';
@@ -36,8 +41,9 @@ const fetchKeyMovies = async (querySearch, page) => {
 // console.log(fetchGenres());
 
 const renderKeyMovies = movies => {
-  console.log('Movies', movies);
-
+  // console.log('Movies', movies);
+  paginationPopular.style.display = 'none';
+  paginationQuery.style.display = 'flex';
   return movies
     .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
       return `<li class="movie-card">
@@ -54,10 +60,11 @@ const renderKeyMovies = movies => {
         </p>
         <div class="details">
         <p class="info-item">
-        <b>${genre_ids.slice(0, 2)}</b>
+        <b>${genre_ids ? genre_ids.slice(0, 2) : ''}</b>
       </p>
         <p class="info-item">
-          <b>| ${release_date.slice(0, 4)}</b>
+        <b>| ${release_date ? release_date.slice(0, 4) : ''}</b>
+
         </p>
         </div>
       </div>
@@ -65,13 +72,14 @@ const renderKeyMovies = movies => {
     })
     .join('');
 };
-
+//<b>| ${release_date.slice(0, 4)}</b>
+//<b>${genre_ids.slice(0, 2)}</b>
 const searchingInput = async event => {
   event.preventDefault();
-  const querySearch = event.target.elements.searchQuery.value.trim();
-  console.log(querySearch);
+  querySearch = event.target.elements.searchQuery.value.trim();
+  // console.log(querySearch);
   page = 1;
-
+  currPage.textContent = page;
   await fetchKeyMovies(querySearch, page)
     // .then(movies => console.log(movies))
     .then(movies => {
@@ -89,4 +97,29 @@ const searchingInput = async event => {
 
   searchForm.reset();
 };
+
 searchForm.addEventListener('submit', searchingInput);
+
+nextPage.addEventListener('click', async e => {
+  try {
+    currPage.textContent = ++page;
+    const movies = await fetchKeyMovies(querySearch, page);
+    const moviesMarkup = renderKeyMovies(movies);
+    moviesContainer.innerHTML = moviesMarkup;
+  } catch (error) {
+    console.error('Error fetching popular movies:', error);
+  }
+});
+
+prevPage.addEventListener('click', async e => {
+  try {
+    if (page > 1) {
+      currPage.textContent = --page;
+      const movies = await fetchKeyMovies(querySearch, page);
+      const moviesMarkup = renderKeyMovies(movies);
+      moviesContainer.innerHTML = moviesMarkup;
+    }
+  } catch (error) {
+    console.error('Error fetching popular movies:', error);
+  }
+});
