@@ -6,23 +6,27 @@ const nextPage = document.querySelector('#next');
 const currPage = document.querySelector('#current');
 
 const modalWindow = document.querySelector('.modal-window');
+const innerModalContent = document.querySelector('.inner-modal-content');
 const modalOverlay = document.querySelector('.modal-overlay');
 
 let pageNumber = 1;
+
+const closeModal = () => {
+  modalWindow.classList.add('hidden');
+  modalOverlay.classList.remove('active');
+};
 
 fetchPopularMovies(pageNumber)
   .then(movies => renderMovies(movies))
   .catch(err => console.error(err));
 
-const renderMovies = movies => {
-  console.log(movies);
-
-  movies.results.forEach(async movie => {
-    try {
+const renderMovies = async movies => {
+  try {
+    const moviePromises = movies.results.map(async movie => {
       const movieDetails = await fetchMoviesByID(movie.id);
       const genres = movieDetails.genres.map(genre => genre.name).join(', ');
 
-      const html = `<li class="movie-card">
+      return `<li class="movie-card">
         <div class="card">
           <a href="${movie.poster_path}" data-movie-id="${movie.id}">
             <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}"/>
@@ -39,35 +43,61 @@ const renderMovies = movies => {
           </div>
         </div>
       </li>`;
+    });
 
-      videoSection.insertAdjacentHTML('afterbegin', html);
-    } catch (error) {
-      console.error('Error fetching movie details:', error);
-    }
-  });
+    const movieHTMLs = await Promise.all(moviePromises);
+    const moviesHTMLString = movieHTMLs.join('');
+    videoSection.innerHTML = moviesHTMLString;
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+  }
 };
+
+// const renderMovies = movies => {
+//   console.log(movies);
+
+//   movies.results.forEach(async movie => {
+//     try {
+//       const movieDetails = await fetchMoviesByID(movie.id);
+//       const genres = movieDetails.genres.map(genre => genre.name).join(', ');
+
+//       const html = `<li class="movie-card">
+//         <div class="card">
+//           <a href="${movie.poster_path}" data-movie-id="${movie.id}">
+//             <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}"/>
+//           </a>
+//           <div class="info">
+//             <p class="info-item">
+//               <b> ${movie.title}</b>
+//             </p>
+//             <div class="details">
+//               <p class="info-item">
+//                 <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </li>`;
+
+//       videoSection.insertAdjacentHTML('afterbegin', html);
+//     } catch (error) {
+//       console.error('Error fetching movie details:', error);
+//     }
+//   });
+// };
 
 videoSection.addEventListener('click', async e => {
   e.preventDefault();
   const target = e.target.closest('a');
   const movieId = target.dataset.movieId;
-  console.log('Clicked on movie with ID:', movieId);
 
   try {
     const movieDetails = await fetchMoviesByID(movieId);
-    console.log(movieDetails);
     const modalContent = `
-    <div>
-    <div>
-      <button class="modal-close" id="close-modal">
-        <svg width="30" height="30">
-          <use href="./images/icons.svg#icon-close" />
-        </svg>
-      </button>
-      <div>
-        <img class="modal-image" src="https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}" alt="${
-movieDetails.title
-}" />
+         <div>
+        <img class="modal-image" src="https://image.tmdb.org/t/p/w500/${
+          movieDetails.poster_path
+        }" alt="${movieDetails.title}" />
       </div>
       <div class="modal-description">
         <h1>${movieDetails.title}</h1>
@@ -94,17 +124,18 @@ movieDetails.title
         <button data-movie-id="${movieId}" type="button" class="add-to-queue" id="queue-button">add to queue</button>
         </div>
       </div>
-    </div>
-  </div>
       `;
-    modalWindow.innerHTML = modalContent;
+    innerModalContent.innerHTML = modalContent;
     modalWindow.classList.remove('hidden');
-    const closeModal = document.querySelector('#close-modal');
-    closeModal.addEventListener('click', () => {
-      modalWindow.classList.add('hidden');
-      modalOverlay.classList.remove('active');
-    });
     modalOverlay.classList.add('active');
+    modalOverlay.addEventListener('click', () => {
+      closeModal();
+    });
+
+    const closeModalButton = document.querySelector('#close-modal');
+    closeModalButton.addEventListener('click', () => {
+      closeModal();
+    });
   } catch (error) {
     console.error('Error fetching movie details:', error);
   }
@@ -115,11 +146,6 @@ document.addEventListener('keydown', e => {
     closeModal();
   }
 });
-
-const closeModal = () => {
-  modalWindow.classList.add('hidden');
-  modalOverlay.classList.remove('active');
-};
 
 nextPage.addEventListener('click', async () => {
   try {
