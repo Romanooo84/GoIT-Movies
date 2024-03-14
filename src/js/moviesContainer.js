@@ -1,12 +1,9 @@
 import { fetchMoviesByID, fetchPopularMovies } from './fetchMovies';
 
+const videoSection = document.querySelector('.movie__list');
 const prevPage = document.querySelector('#prev');
 const nextPage = document.querySelector('#next');
 const currPage = document.querySelector('#current');
-const paginationQuery = document.querySelector('.pagination_for_query');
-const paginationPopular = document.querySelector('.pagination');
-
-export const videoSection = document.querySelector('.movie__list');
 
 const modalWindow = document.querySelector('.modal-window');
 const innerModalContent = document.querySelector('.inner-modal-content');
@@ -23,70 +20,6 @@ fetchPopularMovies(pageNumber)
   .then(movies => renderMovies(movies))
   .catch(err => console.error(err));
 
-//<<<<<<< karol
-const renderMovies = movies => {
-  paginationQuery.style.display = 'none';
-  paginationPopular.style.display = 'flex';
-  const promises = movies.results.map(movie => fetchMoviesByID(movie.id));
-
-  Promise.all(promises)
-    .then(movieDetails => {
-      movies.results.forEach((movie, index) => {
-        const movieDetail = movieDetails[index];
-        const genres = movieDetail.genres.map(genre => genre.name).join(', ');
-
-        const html = `<li class="movie-card">
-              <a href="${movie.poster_path}" data-movie-id="${movie.id}">
-                <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${
-          movie.title
-        }"/>
-              </a>
-              <div class="info">
-                <p class="info-item">
-                  <b> ${movie.title}</b>
-                </p>
-                  <div class="details">
-                <p class="info-item">
-                  <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
-                </p>
-                </div>
-              </div>
-            </li>`;
-
-        videoSection.insertAdjacentHTML('afterbegin', html);
-      });
-    })
-    .catch(error => console.error('Error fetching movie details:', error));
-};
-
-prevPage.addEventListener('click', async () => {
-  try {
-    if (pageNumber > 1) {
-      pageNumber--;
-      const popularMovies = await fetchPopularMovies(pageNumber);
-      videoSection.innerHTML = '';
-      renderMovies(popularMovies);
-
-      currPage.innerHTML = pageNumber;
-    }
-  } catch (error) {
-    console.error('Error fetching popular movies:', error);
-  }
-});
-
-nextPage.addEventListener('click', async e => {
-  e.preventDefault();
-  try {
-    pageNumber++;
-    const popularMovies = await fetchPopularMovies(pageNumber);
-    videoSection.innerHTML = '';
-    renderMovies(popularMovies);
-    currPage.innerHTML = pageNumber;
-  } catch (error) {
-    console.error('Error fetching popular movies:', error);
-  }
-});
-//=======
 const renderMovies = async movies => {
   try {
     const moviePromises = movies.results.map(async movie => {
@@ -152,7 +85,6 @@ const renderMovies = async movies => {
 //     }
 //   });
 // };
-//>>>>>>> main
 
 videoSection.addEventListener('click', async e => {
   e.preventDefault();
@@ -215,12 +147,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-//<<<<<<< karol
-const closeModal = () => {
-  modalWindow.classList.add('hidden');
-  modalOverlay.classList.remove('active');
-};
-//=======
 nextPage.addEventListener('click', async () => {
   try {
     pageNumber++;
@@ -247,7 +173,6 @@ prevPage.addEventListener('click', async () => {
     console.error('Error fetching popular movies:', error);
   }
 });
-//>>>>>>> main
 
 // nextPage.addEventListener('click', async () => {
 //   try {
@@ -295,38 +220,5 @@ prevPage.addEventListener('click', async () => {
 //   </li>
 //   `;
 //     videoSection.insertAdjacentHTML('afterbegin', html);
-//   });
-// };
-
-// const renderMovies = movies => {
-//   console.log(movies);
-
-//   movies.results.forEach(async movie => {
-//     try {
-//       const movieDetails = await fetchMoviesByID(movie.id);
-//       const genres = movieDetails.genres.map(genre => genre.name).join(', ');
-
-//       const html = `<li class="movie-card">
-//         <div class="card">
-//           <a href="${movie.poster_path}" data-movie-id="${movie.id}">
-//             <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}"/>
-//           </a>
-//           <div class="info">
-//             <p class="info-item">
-//               <b> ${movie.title}</b>
-//             </p>
-//             <div class="details">
-//               <p class="info-item">
-//                 <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </li>`;
-
-//       videoSection.insertAdjacentHTML('afterbegin', html);
-//     } catch (error) {
-//       console.error('Error fetching movie details:', error);
-//     }
 //   });
 // };
