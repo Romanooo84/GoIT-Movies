@@ -27,9 +27,9 @@
 .btn-close {
   position: absolute;
   top: 14px;
-  right: 20px;
+  right: 18px;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
 
   &:hover {
@@ -39,6 +39,7 @@
 
 .student-photo {
   height: 400px;
+  width: 260px;
   object-fit: cover;
 }
 
@@ -90,36 +91,56 @@
 }
 
 @media (max-width: 768px) {
-  .modal-content {
-    width: 80%;
-    max-width: 600px;
+  .windows-modal .modal-content {
+    width: 90%;
+    max-width: 700px;
   }
+
+  .student-item {
+    text-align: justify;
+  }
+
   .student-info {
-    align-items: center;
+    align-items: end;
+  }
+
+  .student-name {
+    font-size: 1.7rem;
+  }
+
+  .student-role {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .modal-content {
-    width: 80%;
-    max-width: 600px;
+  .windows-modal .modal-content {
+    width: 90%;
+    max-width: 450px;
+    height: 95vh;
   }
 
   .btn-close {
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 12px;
   }
 
   .student-card {
     flex-direction: column;
+    align-items: center;
     height: 90vh;
   }
 
   .student-photo {
-    margin-top: 10px;
+    width: 235px;
+    margin-top: 15px;
     height: 300px;
     max-height: 45vh;
     padding: 0 0.7rem;
+  }
+
+  .student-item {
+    text-align: center;
   }
 
   .student-info {
