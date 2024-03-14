@@ -1,3 +1,4 @@
+import { genresId } from './genres';
 import Notiflix from 'notiflix';
 
 const searchForm = document.querySelector('.header-home-form');
@@ -10,8 +11,13 @@ const paginationPopular = document.querySelector('.pagination');
 const paginationQuery = document.querySelector('.pagination_for_query');
 
 let page = 1;
+//<<<<<<< karol
 let genre;
 let querySearch;
+//=======
+const headerAlert = document.querySelector('.header-home-item');
+headerAlert.style.opacity = '0';
+//>>>>>>> main
 
 const fetchKeyMovies = async (querySearch, page) => {
   const API_KEY = 'e7c930d9ee21da94f8fc3257d387eced';
@@ -27,26 +33,23 @@ const fetchKeyMovies = async (querySearch, page) => {
   return responseKeyMovies.results;
 };
 
-// const fetchGenres = async () => {
-//   const API_KEY = 'e7c930d9ee21da94f8fc3257d387eced';
-//   const searchParamsGenres = new URLSearchParams({
-//     api_key: API_KEY,
-//   });
-
-//   const genres = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${searchParamsGenres}`);
-//   const genresNames = await genres.json();
-//   console.log('genresnames', genresNames);
-//   return genresNames;
-// };
-// console.log(fetchGenres());
-
 const renderKeyMovies = movies => {
   // console.log('Movies', movies);
   paginationPopular.style.display = 'none';
   paginationQuery.style.display = 'flex';
   return movies
     .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
+      let filmGenreId = '';
+      if (genre_ids && genre_ids.length > 0) {
+        filmGenreId = genresId
+          .filter(({ id }) => genre_ids.includes(id))
+          .map(({ name }) => name)
+          .join(', ');
+      } else {
+        filmGenreId = 'Genre is not available';
+      }
       return `<li class="movie-card">
+//<<<<<<< karol
       <a href="${poster_path}" data-movie-id="${id}">
         <img src="${
           poster_path
@@ -69,6 +72,28 @@ const renderKeyMovies = movies => {
         </div>
       </div>
     </li>`;
+//=======
+      <div class="card">
+            <a href="${poster_path}" data-movie-id="${id}">
+              <img src="${
+                poster_path
+                  ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                  : 'https://icrier.org/wp-content/uploads/2022/09/Event-Image-Not-Found.jpg'
+              }" alt="${original_title}"/>
+            </a>
+            <div class="info">
+              <p class="info-item">
+                <b> ${original_title}</b>
+              </p>
+              <div class="details">
+              <p class="info-item">
+              <b>${filmGenreId} | ${release_date.slice(0, 4)}</b>
+              </p>
+              </div>
+            </div>
+            </div>
+          </li>`;
+//>>>>>>> main
     })
     .join('');
 };
@@ -84,9 +109,10 @@ const searchingInput = async event => {
     // .then(movies => console.log(movies))
     .then(movies => {
       if (querySearch === '' || movies.length <= 0) {
-        Notiflix.Notify.failure(
-          'Sorry, there are no movies matching your search query. Please try again.',
-        );
+        // Notiflix.Notify.failure(
+        //   'Sorry, there are no movies matching your search query. Please try again.',
+        // );
+        headerAlert.style.opacity = '1';
       } else {
         const moviesMarkup = renderKeyMovies(movies);
         moviesContainer.innerHTML = moviesMarkup;

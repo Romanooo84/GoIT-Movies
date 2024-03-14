@@ -6,7 +6,7 @@ const addToQueue = movieId => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
   const addToQueueBtn = document.getElementById('add-to-queue');
   if (addToQueueBtn) {
     addToQueueBtn.addEventListener('click', () => {
@@ -14,4 +14,4 @@ document.addEventListener('DOMContentLoaded', () => {
       addToQueue(movieId);
     });
   }
-});
+});*/

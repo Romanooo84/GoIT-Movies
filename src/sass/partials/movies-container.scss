@@ -84,6 +84,9 @@ section {
   &:hover {
     white-space: wrap;
   }
+  &:active {
+    white-space: wrap;
+  }
 }
 
 /* Stylizacja dla różnych urządzeń */
@@ -153,7 +156,7 @@ section {
   }
 
   .card {
-    height: 438px;
+    max-height: 465px;
   }
 
   .movie-card img {
