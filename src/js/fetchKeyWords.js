@@ -81,16 +81,13 @@ const searchingInput = async event => {
   currPage.textContent = page;
 
   await fetchKeyMovies(querySearch, page)
-    // .then(movies => console.log(movies))
     .then(movies => {
       if (querySearch === '' || movies.length <= 0) {
-        // Notiflix.Notify.failure(
-        //   'Sorry, there are no movies matching your search query. Please try again.',
-        // );
         headerAlert.style.opacity = '1';
       } else {
         const moviesMarkup = renderKeyMovies(movies);
         moviesContainer.innerHTML = moviesMarkup;
+        headerAlert.style.opacity = '0';
       }
     })
 

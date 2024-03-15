@@ -1,3 +1,6 @@
+import Notiflix from 'notiflix';
+const modal = document.querySelector('.modal-window');
+
 const addToQueue = event => {
   const movieId = event.target.getAttribute('data-movie-id');
 
@@ -13,13 +16,13 @@ const addToQueue = event => {
 
     localStorage.setItem('queue', JSON.stringify(queue));
 
-    alert('Film został dodany do kolejki!');
+    Notiflix.Notify.success('Video has been added to the queued list');
   } else {
-    alert('Twoja przeglądarka nie obsługuje local storage.');
+    Notiflix.Notify.failure('Your browser does not support this button.');
   }
 };
 
-document.addEventListener('click', () => {
+modal.addEventListener('click', () => {
   const queueButton = document.querySelector('#queue-button');
   queueButton.addEventListener('click', addToQueue);
 });
