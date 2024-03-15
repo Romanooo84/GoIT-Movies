@@ -16,24 +16,24 @@ const showWatched = async () => {
           .map(movie => {
             const genres = movie.genres.map(genre => genre.name).join(', ');
             return `<li class="movie-card">
-            <div class="card">
-              <a href="${movie.poster_path}" data-movie-id="${movie.id}">
-                <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${
+              <div class="card">
+                <a href="${movie.poster_path}" data-movie-id="${movie.id}">
+                  <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${
               movie.title
             }"/>
-              </a>
-              <div class="info">
-                <p class="info-item">
-                  <b>${movie.title}</b>
-                </p>
-                <div class="details">
+                </a>
+                <div class="info">
                   <p class="info-item">
-                    <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
+                    <b>${movie.title}</b>
                   </p>
+                  <div class="details">
+                    <p class="info-item">
+                      <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>`;
+            </li>`;
           })
           .join('');
 
