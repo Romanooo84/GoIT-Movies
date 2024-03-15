@@ -11,6 +11,9 @@ const modalWindow = document.querySelector('.modal-window');
 const innerModalContent = document.querySelector('.inner-modal-content');
 const modalOverlay = document.querySelector('.modal-overlay');
 
+const ulTag = document.querySelector('.paginator-ul');
+console.log(ulTag);
+
 let pageNumber = 1;
 
 const closeModal = () => {
@@ -23,8 +26,12 @@ fetchPopularMovies(pageNumber)
   .catch(err => console.error(err));
 
 const renderMovies = async movies => {
+  console.log(pageNumber);
+  prevPage.style.display = 'none';
+  nextPage.style.display = 'none';
+  element(movies.total_pages, pageNumber);
   paginationQuery.style.display = 'none';
-  paginationPopular.style.display = 'flex';
+  // paginationPopular.style.display = 'flex';
   try {
     const moviePromises = movies.results.map(async movie => {
       const movieDetails = await fetchMoviesByID(movie.id);
@@ -126,7 +133,7 @@ nextPage.addEventListener('click', async () => {
     const movies = await fetchPopularMovies(pageNumber);
     videoSection.innerHTML = '';
     renderMovies(movies);
-    currPage.innerHTML = pageNumber;
+    // currPage.innerHTML = pageNumber;
   } catch (error) {
     console.error('Error fetching popular movies:', error);
   }
@@ -140,12 +147,62 @@ prevPage.addEventListener('click', async () => {
       videoSection.innerHTML = '';
       renderMovies(movies);
 
-      currPage.innerHTML = pageNumber;
+      // currPage.innerHTML = pageNumber;
     }
   } catch (error) {
     console.error('Error fetching popular movies:', error);
   }
 });
+
+function element(totalPages, page) {
+  let liTag = ``;
+  let activeLi;
+  let beforePages = page - 2;
+  let afterPages = page + 2;
+
+  if (page > 1) {
+    prevPage.style.display = 'block';
+  }
+
+  if (beforePages < 1) {
+    beforePages = 1;
+  }
+  if (afterPages > totalPages) {
+    afterPages = totalPages;
+  }
+
+  for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
+    if (page === pageLength) {
+      activeLi = 'active';
+    } else {
+      activeLi = ``;
+    }
+    // liTag += `<li class="numb ${activeLi}"><span>${pageLength}</span></li>`;
+    liTag += `<li class="numb ${activeLi}" onclick="goToPage(${pageLength})"><span>${pageLength}</span></li>`;
+  }
+
+  if (page < totalPages) {
+    nextPage.style.display = 'block';
+  }
+  ulTag.innerHTML = liTag;
+}
+
+window.goToPage = function (pageNumber) {
+  fetchPopularMovies(pageNumber)
+    .then(movies => {
+      renderMovies(movies);
+      // currPage.innerHTML = pageNumber;
+    })
+    .catch(error => {
+      console.error('Error fetching popular movies:', error);
+    });
+};
+
+// const movies = await fetchPopularMovies(pageNumber);
+// renderMovies(movies);
+// currPage.innerHTML = pageNumber;
+// videoSection.innerHTML = '';
+// renderMovies(movies);
 
 // const renderMovies = movies => {
 //   console.log(movies);

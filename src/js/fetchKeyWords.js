@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import { genresId } from './genres';
 const searchForm = document.querySelector('.header-home-form');
 const moviesContainer = document.querySelector('.movie__list');
@@ -25,15 +26,20 @@ const fetchKeyMovies = async (querySearch, page) => {
 
   const response = await fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}`);
   const responseKeyMovies = await response.json();
-  return responseKeyMovies.results;
+  // console.log(responseKeyMovies.total_pages);
+  // return responseKeyMovies.results;
+  return {
+    totalPages: responseKeyMovies.total_pages,
+    results: responseKeyMovies.results,
+  };
 };
 
 const renderKeyMovies = movies => {
-  console.log('Movies', movies);
+  console.log('Movies', movies.results);
   paginationPopular.style.display = 'none';
   paginationQuery.style.display = 'flex';
 
-  return movies
+  return movies.results
     .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
       let filmGenreId = '';
       if (genre_ids && genre_ids.length > 0) {
@@ -82,7 +88,7 @@ const searchingInput = async event => {
 
   await fetchKeyMovies(querySearch, page)
     .then(movies => {
-      if (querySearch === '' || movies.length <= 0) {
+      if (querySearch === '' || movies.results.length <= 0) {
         headerAlert.style.opacity = '1';
       } else {
         const moviesMarkup = renderKeyMovies(movies);
@@ -98,10 +104,16 @@ searchForm.addEventListener('submit', searchingInput);
 
 nextPage.addEventListener('click', async e => {
   try {
-    currPage.textContent = ++page;
+    page++;
     const movies = await fetchKeyMovies(querySearch, page);
-    const moviesMarkup = renderKeyMovies(movies);
-    moviesContainer.innerHTML = moviesMarkup;
+    if (movies.totalPages >= page) {
+      currPage.textContent = page;
+      const moviesMarkup = renderKeyMovies(movies);
+      moviesContainer.innerHTML = moviesMarkup;
+    } else {
+      page--;
+      Notiflix.Notify.info('You have reached the end of the search results.');
+    }
   } catch (error) {
     console.error('Error fetching popular movies:', error);
   }
@@ -119,3 +131,16 @@ prevPage.addEventListener('click', async e => {
     console.error('Error fetching popular movies:', error);
   }
 });
+
+// nextPage.addEventListener('click', async e => {
+//   try {
+//     const movies = await fetchKeyMovies(querySearch, page);
+//     if (movies.length > 0) {
+//       currPage.textContent = ++page;
+//       const moviesMarkup = renderKeyMovies(movies);
+//       moviesContainer.innerHTML = moviesMarkup;
+//     }
+//   } catch (error) {
+//     console.error('Error fetching popular movies:', error);
+//   }
+// });

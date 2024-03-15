@@ -1,4 +1,26 @@
 /* Ustawienia dla całej sekcji */
+.paginatorPopular {
+  display: flex;
+}
+
+.paginatorPopular ul {
+  display: flex;
+  gap: 15px;
+}
+
+.paginatorPopular ul li {
+  cursor: pointer;
+}
+
+.paginatorPopular ul li.btn {
+  background-color: rgba(247, 247, 247, 1);
+  // color: red;
+}
+
+.paginatorPopular ul li.active {
+  background-color: #ff6b08;
+}
+
 section {
   display: flex;
   flex-direction: column;
