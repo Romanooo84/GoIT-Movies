@@ -14,10 +14,10 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     // Simulate an asynchronous action with setTimeout
     setTimeout(function() {
       loaderOff(); // Hide loader after x seconds (simulating an action)
-    }, 500);
+    }, 1000);
 });
 
 loaderOn();
 setTimeout(function() {
 loaderOff();
-}, 500);
+}, 1000);

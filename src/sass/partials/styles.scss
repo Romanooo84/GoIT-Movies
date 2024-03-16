@@ -6,6 +6,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 1); /* Semi-transparent white background */
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999; /* Make sure the loader appears on top of other content */
@@ -14,4 +15,20 @@
 .loader img {
     width: 385px; /* Adjust the size of the loader image as needed */
     height: auto;
+}
+
+.loader-text {
+    color:rgb(180, 180, 180);
+    font-size: 16px; /* Adjust font size as needed */
+    margin-top: 10px; /* Add margin to separate text from the image */
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 }
