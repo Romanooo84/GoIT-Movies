@@ -60,8 +60,8 @@ const renderKeyMovies = movies => {
               <img src="${
                 poster_path
                   ? `https://image.tmdb.org/t/p/w500${poster_path}`
-                  : 'https://icrier.org/wp-content/uploads/2022/09/Event-Image-Not-Found.jpg'
-              }" alt="${original_title}"/>
+                  : 'https://media.wired.com/photos/59326d5344db296121d6aee9/master/w_2240,c_limit/8552.gif'
+              }" alt="${original_title}" />
             </a>
             <div class="info">
               <p class="info-item">
