@@ -62,11 +62,12 @@ const handleWatchedItemClick = async e => {
   e.preventDefault();
 
   const target = e.target.closest('a');
-  const movieId = target.dataset.movieId;
+  if (target) {
+    const movieId = target.dataset.movieId;
 
-  try {
-    const movieDetails = await fetchMoviesByID(movieId);
-    const modalContent = `
+    try {
+      const movieDetails = await fetchMoviesByID(movieId);
+      const modalContent = `
       <div>
         <img class="modal-image" src="https://image.tmdb.org/t/p/w500/${
           movieDetails.poster_path
@@ -100,19 +101,20 @@ const handleWatchedItemClick = async e => {
         </div>
       </div>`;
 
-    innerModalContent.innerHTML = modalContent;
-    modalWindow.classList.remove('hidden');
-    modalOverlay.classList.add('active');
-    modalOverlay.addEventListener('click', () => {
-      closeModal();
-    });
+      innerModalContent.innerHTML = modalContent;
+      modalWindow.classList.remove('hidden');
+      modalOverlay.classList.add('active');
+      modalOverlay.addEventListener('click', () => {
+        closeModal();
+      });
 
-    const closeModalButton = document.querySelector('#close-modal');
-    closeModalButton.addEventListener('click', () => {
-      closeModal();
-    });
-  } catch (error) {
-    console.error('Error fetching movie details:', error);
+      const closeModalButton = document.querySelector('#close-modal');
+      closeModalButton.addEventListener('click', () => {
+        closeModal();
+      });
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
+    }
   }
 };
 
