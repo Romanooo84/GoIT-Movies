@@ -5,7 +5,56 @@ section {
   align-items: center;
 }
 
-/* Stylizacja kontenera dla filmów */
+/* Stylizacja kontenera dla filmów My Library*/
+.library-watched {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  list-style: none;
+  margin: 60px 0;
+  padding: 0 32px;
+  gap: 32px 16px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    /* Dla ekranów o szerokości od 768px do 1279px */
+    justify-content: center;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    /* Dla ekranów o szerokości od 320px do 767px */
+
+    margin: 20px 0 0 0;
+    row-gap: 20px;
+    justify-content: center;
+  }
+}
+
+.library-queue {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  list-style: none;
+  margin: 60px 0;
+  padding: 0 32px;
+  gap: 32px 16px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    /* Dla ekranów o szerokości od 768px do 1279px */
+    justify-content: center;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    /* Dla ekranów o szerokości od 320px do 767px */
+
+    margin: 20px 0 0 0;
+    row-gap: 20px;
+    justify-content: center;
+  }
+}
+
+/* Stylizacja kontenera dla filmów Home*/
 .container {
   display: flex;
   flex-flow: column wrap;
@@ -40,7 +89,7 @@ section {
 
 /* Stylizacja opisu filmu */
 .info {
-  padding: 0 0 10px 10px;
+  padding: 0 10px 10px 10px;
   display: flex;
   flex-direction: column;
 }
@@ -131,7 +180,7 @@ section {
   }
 
   .info {
-    padding: 10px 0 10px 5px;
+    padding: 10px 5px 10px 5px;
   }
 
   .info p {
@@ -164,7 +213,7 @@ section {
   }
 
   .info {
-    padding: 0 0 10px 5px;
+    padding: 0 5px 10px 5px;
   }
 
   .info p {
