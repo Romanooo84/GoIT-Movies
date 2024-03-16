@@ -12,8 +12,33 @@ body {
 }
 
 /* ============ SCROLLBAR - START ============ */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
 * {
-  -webkit-scrollbar {
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 73, 1, 1) 0%,
+      rgba(255, 73, 1, 0.8) 25%,
+      rgba(255, 73, 1, 0.6) 50%,
+      rgba(255, 73, 1, 0.8) 75%,
+      rgba(255, 73, 1, 1) 100%
+    );
+  }
+}
+
+// Ukrywa pasek przewijania, kiedy nie jest używany
+* {
+  &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
@@ -21,27 +46,10 @@ body {
 
 // Pokazuje pasek przewijania podczas przewijania
 *:hover {
-  -webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
-}
-
-*::-webkit-scrollbar-track {
-  background-color: transparent;
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 73, 1, 1) 0%,
-    rgba(255, 73, 1, 0.8) 25%,
-    rgba(255, 73, 1, 0.6) 50%,
-    rgba(255, 73, 1, 0.8) 75%,
-    rgba(255, 73, 1, 1) 100%
-  );
 }
 
 // Dla Firefox
