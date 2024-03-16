@@ -10,3 +10,48 @@ body {
   max-width: 1280px;
   margin: 0 auto;
 }
+
+/* ============ SCROLLBAR - START ============ */
+* {
+  -webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+// Pokazuje pasek przewijania podczas przewijania
+*:hover {
+  -webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 73, 1, 1) 0%,
+    rgba(255, 73, 1, 0.8) 25%,
+    rgba(255, 73, 1, 0.6) 50%,
+    rgba(255, 73, 1, 0.8) 75%,
+    rgba(255, 73, 1, 1) 100%
+  );
+}
+
+// Dla Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 73, 1, 0.8) transparent;
+}
+
+// Ukrywa pasek przewijania w Firefoxie, gdy nie jest używany
+*:not(:hover) {
+  scrollbar-width: none;
+}
+/* ============ SCROLLBAR - END ============ */
