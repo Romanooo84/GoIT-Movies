@@ -1,11 +1,14 @@
 import { fetchMoviesByID, fetchPopularMovies } from './fetchMovies';
 
 const videoSection = document.querySelector('.movie__list');
-const prevPage = document.querySelector('#prev');
-const nextPage = document.querySelector('#next');
-const currPage = document.querySelector('#current');
+const prevPage = document.querySelector('#prevPopular');
+const nextPage = document.querySelector('#nextPopular');
+// const currPage = document.querySelector('#current');
 const paginationQuery = document.querySelector('.pagination_for_query');
 const paginationPopular = document.querySelector('.pagination');
+
+const paginatorPopular = document.querySelector('.paginatorPopular');
+const paginatorQuery = document.querySelector('.paginatorQuery');
 
 const modalWindow = document.querySelector('.modal-window');
 const innerModalContent = document.querySelector('.inner-modal-content');
@@ -26,12 +29,12 @@ fetchPopularMovies(pageNumber)
   .catch(err => console.error(err));
 
 const renderMovies = async movies => {
-  console.log(pageNumber);
+  // console.log(pageNumber);
   prevPage.style.display = 'none';
   nextPage.style.display = 'none';
-  element(movies.total_pages, pageNumber);
-  paginationQuery.style.display = 'none';
-  // paginationPopular.style.display = 'flex';
+  paginator(100, pageNumber);
+  paginatorQuery.style.display = 'none';
+  paginatorPopular.style.display = 'flex';
   try {
     const moviePromises = movies.results.map(async movie => {
       const movieDetails = await fetchMoviesByID(movie.id);
@@ -154,7 +157,7 @@ prevPage.addEventListener('click', async () => {
   }
 });
 
-function element(totalPages, page) {
+function paginator(totalPages, page) {
   let liTag = ``;
   let activeLi;
   let beforePages = page - 2;
@@ -162,6 +165,13 @@ function element(totalPages, page) {
 
   if (page > 1) {
     prevPage.style.display = 'block';
+  }
+
+  if (page > 3) {
+    liTag += `<li class="numb" onclick="goToPage(1)"><span>1</span></li>`;
+    if (page > 3) {
+      liTag += `<li class="dots"><span>...</span></li>`;
+    }
   }
 
   if (beforePages < 1) {
@@ -178,7 +188,15 @@ function element(totalPages, page) {
       activeLi = ``;
     }
     // liTag += `<li class="numb ${activeLi}"><span>${pageLength}</span></li>`;
+
     liTag += `<li class="numb ${activeLi}" onclick="goToPage(${pageLength})"><span>${pageLength}</span></li>`;
+  }
+
+  if (page < totalPages - 2) {
+    if (page < totalPages - 2) {
+      liTag += `<li class="dots"><span>...</span></li>`;
+    }
+    liTag += `<li class="numb" onclick="goToPage(${totalPages})"><span>${totalPages}</span></li>`;
   }
 
   if (page < totalPages) {
@@ -187,8 +205,9 @@ function element(totalPages, page) {
   ulTag.innerHTML = liTag;
 }
 
-window.goToPage = function (pageNumber) {
-  fetchPopularMovies(pageNumber)
+window.goToPage = function (number) {
+  pageNumber = number;
+  fetchPopularMovies(number)
     .then(movies => {
       renderMovies(movies);
       // currPage.innerHTML = pageNumber;

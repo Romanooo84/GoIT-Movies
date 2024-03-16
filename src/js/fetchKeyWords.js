@@ -8,9 +8,10 @@ headerAlert.style.opacity = '0';
 
 const prevPage = document.querySelector('#prevQuery');
 const nextPage = document.querySelector('#nextQuery');
-let currPage = document.querySelector('#currentQuery');
-const paginationPopular = document.querySelector('.pagination');
-const paginationQuery = document.querySelector('.pagination_for_query');
+
+const paginatorPopular = document.querySelector('.paginatorPopular');
+const paginatorQuery = document.querySelector('.paginatorQuery');
+const ulTag = document.querySelector('.paginator-ulq');
 
 let genre;
 let querySearch;
@@ -36,8 +37,11 @@ const fetchKeyMovies = async (querySearch, page) => {
 
 const renderKeyMovies = movies => {
   console.log('Movies', movies.results);
-  paginationPopular.style.display = 'none';
-  paginationQuery.style.display = 'flex';
+  prevPage.style.display = 'none';
+  nextPage.style.display = 'none';
+  paginatorQuery.style.display = 'flex';
+  paginatorPopular.style.display = 'none';
+  paginator(movies.totalPages, page);
 
   return movies.results
     .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
@@ -84,7 +88,6 @@ const searchingInput = async event => {
   querySearch = event.target.elements.searchQuery.value.trim();
   // console.log(querySearch);
   page = 1;
-  currPage.textContent = page;
 
   await fetchKeyMovies(querySearch, page)
     .then(movies => {
@@ -104,14 +107,12 @@ searchForm.addEventListener('submit', searchingInput);
 
 nextPage.addEventListener('click', async e => {
   try {
-    page++;
-    const movies = await fetchKeyMovies(querySearch, page);
-    if (movies.totalPages >= page) {
-      currPage.textContent = page;
+    const movies = await fetchKeyMovies(querySearch, page + 1);
+    if (movies.totalPages >= page + 1) {
+      page++;
       const moviesMarkup = renderKeyMovies(movies);
       moviesContainer.innerHTML = moviesMarkup;
     } else {
-      page--;
       Notiflix.Notify.info('You have reached the end of the search results.');
     }
   } catch (error) {
@@ -122,21 +123,102 @@ nextPage.addEventListener('click', async e => {
 prevPage.addEventListener('click', async e => {
   try {
     if (page > 1) {
-      currPage.textContent = --page;
-      const movies = await fetchKeyMovies(querySearch, page);
-      const moviesMarkup = renderKeyMovies(movies);
-      moviesContainer.innerHTML = moviesMarkup;
+      const movies = await fetchKeyMovies(querySearch, page - 1);
+      if (movies.totalPages >= page - 1) {
+        page--;
+        const moviesMarkup = renderKeyMovies(movies);
+        moviesContainer.innerHTML = moviesMarkup;
+      }
     }
   } catch (error) {
     console.error('Error fetching popular movies:', error);
   }
 });
 
+function paginator(totalPages, page) {
+  let liTag = ``;
+  let activeLi;
+  let beforePages = page - 2;
+  let afterPages = page + 2;
+
+  if (page > 1) {
+    prevPage.style.display = 'block';
+  }
+
+  if (page > 3) {
+    liTag += `<li class="numb" onclick="goToPageQ(1)"><span>1</span></li>`;
+    if (page > 3) {
+      liTag += `<li class="dots"><span>...</span></li>`;
+    }
+  }
+
+  if (beforePages < 1) {
+    beforePages = 1;
+  }
+  if (afterPages > totalPages) {
+    afterPages = totalPages;
+  }
+
+  for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
+    if (page === pageLength) {
+      activeLi = 'active';
+    } else {
+      activeLi = ``;
+    }
+    // liTag += `<li class="numb ${activeLi}"><span>${pageLength}</span></li>`;
+    liTag += `<li class="numb ${activeLi}" onclick="goToPageQ(${pageLength})"><span>${pageLength}</span></li>`;
+  }
+
+  if (page < totalPages - 2) {
+    if (page < totalPages - 2) {
+      liTag += `<li class="dots"><span>...</span></li>`;
+    }
+    liTag += `<li class="numb" onclick="goToPageQ(${totalPages})"><span>${totalPages}</span></li>`;
+  }
+
+  if (page < totalPages) {
+    nextPage.style.display = 'block';
+  }
+  if (totalPages === 1) {
+    paginatorQuery.style.display = 'none';
+  }
+  ulTag.innerHTML = liTag;
+}
+
+window.goToPageQ = function (number) {
+  page = number;
+  fetchKeyMovies(querySearch, number)
+    .then(movies => {
+      renderKeyMovies(movies);
+      moviesContainer.innerHTML = renderKeyMovies(movies);
+    })
+    .catch(error => {
+      console.error('Error fetching popular movies:', error);
+    });
+};
+
 // nextPage.addEventListener('click', async e => {
 //   try {
+//     page++;
 //     const movies = await fetchKeyMovies(querySearch, page);
-//     if (movies.length > 0) {
-//       currPage.textContent = ++page;
+//     if (movies.totalPages >= page) {
+//       // currPage.textContent = page;
+//       const moviesMarkup = renderKeyMovies(movies);
+//       moviesContainer.innerHTML = moviesMarkup;
+//     } else {
+//       page--;
+//       Notiflix.Notify.info('You have reached the end of the search results.');
+//     }
+//   } catch (error) {
+//     console.error('Error fetching popular movies:', error);
+//   }
+// });
+
+// prevPage.addEventListener('click', async e => {
+//   try {
+//     if (page > 1) {
+//       // currPage.textContent = --page;
+//       const movies = await fetchKeyMovies(querySearch, page);
 //       const moviesMarkup = renderKeyMovies(movies);
 //       moviesContainer.innerHTML = moviesMarkup;
 //     }

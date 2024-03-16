@@ -1,23 +1,28 @@
 /* Ustawienia dla całej sekcji */
-.paginatorPopular {
+.paginatorPopular,
+.paginatorQuery {
   display: flex;
 }
 
-.paginatorPopular ul {
+.paginatorPopular ul,
+.paginatorQuery ul {
   display: flex;
   gap: 15px;
 }
 
-.paginatorPopular ul li {
+.paginatorPopular ul li,
+.paginatorQuery ul li {
   cursor: pointer;
 }
 
-.paginatorPopular ul li.btn {
+.paginatorPopular ul li.btn,
+.paginatorQuery ul li.btn {
   background-color: rgba(247, 247, 247, 1);
   // color: red;
 }
 
-.paginatorPopular ul li.active {
+.paginatorPopular ul li.active,
+.paginatorQuery ul li.active {
   background-color: #ff6b08;
 }
 
