@@ -8,23 +8,22 @@
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
   display: none;
-overflow: auto;
+
+  .modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 75%;
+    max-width: 800px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 60px;
+    overflow: auto;
+  }
 }
-.modal-content {
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  width: 75%;
-  max-width: 800px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 60px;
-  overflow: auto;
-  height: 100%;
-  
-}
+
 .btn-close {
   position: absolute;
   top: 14px;
@@ -51,6 +50,8 @@ overflow: auto;
   flex-direction: column;
   justify-content: center;
   padding: 0 2.5rem;
+  overflow: auto;
+  position: relative;
 }
 
 .student-card {
@@ -64,7 +65,6 @@ overflow: auto;
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 5px;
-  margin: 0 auto;
 }
 
 .student-role {
@@ -73,7 +73,6 @@ overflow: auto;
   font-size: 1.5rem;
   color: #ff6b01;
   margin-bottom: 1.5rem;
-  margin: 0 auto;
 }
 
 .student-item {
@@ -81,63 +80,55 @@ overflow: auto;
   font-size: 1rem;
   color: #333;
   text-align: justify;
+  max-height: 250px;
+  overflow: auto;
 }
 
 .buttons-container {
   display: flex;
   justify-content: center;
-  position: absolute; /* Absolutne pozycjonowanie */
-  bottom: 2px; /* Odległość od dolnej krawędzi */
+  position: absolute; 
+  bottom: 20px; 
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  overflow: auto;
- 
 }
-.buttons-container {
-  overflow: auto;
-  padding-bottom: 10px;
-}
-.modal-prev {
-  width: 136px;
-  padding: 10px 15px;
-  margin: 0 10px;
+@media (max-width: 768px) {
+  .windows-modal .modal-content {
+    width: 90%;
+    max-width: 700px;
+  }
+
+  .student-item {
+    text-align: justify;
+  }
+
+  .student-info {
+    align-items: end;
+  }
+
+  .student-name {
+    font-size: 1.7rem;
+  }
+
+  .student-role {
+    font-size: 1.3rem;
+  }
 }
 
-.modal-next {
-  width: 136px;
-  padding: 10px 15px;
-  margin: 0 10px;
-}
-@media screen and (max-width: 767px) {
-  .windows-modal .modal-content {
-      width: 90%;
-      max-width: 700px;
-    }
-  
-    .student-item {
-      text-align: justify;
-    }
-  
-    .student-info {
-      align-items: end;
-    }
-  
-    .student-name {
-      font-size: 1.7rem;
-    }
-  
-    .student-role {
-      font-size: 1.3rem;
-    }
-}
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
+  .windows-modal {
+    overflow: auto;
+    min-height: 700px;
+  }
+
   .windows-modal .modal-content {
     width: 90%;
     max-width: 450px;
-    height: 100%;
-    overflow: auto;
+    height: 95vh;
     padding-bottom: 0;
+    min-height: 700px;
+    overflow: auto;
   }
 
   .btn-close {
@@ -149,6 +140,7 @@ overflow: auto;
     flex-direction: column;
     align-items: center;
     height: 90vh;
+    overflow: auto;
   }
 
   .student-photo {
@@ -161,6 +153,7 @@ overflow: auto;
 
   .student-item {
     text-align: center;
+    max-height: 200px;
   }
 
   .student-info {
@@ -181,4 +174,15 @@ overflow: auto;
   .student-item {
     font-size: 1rem;
   }
+}
+
+.modal-prev {
+  width: 136px;
+  padding: 10px 15px;
+  margin: 0 10px;
+}
+.modal-next {
+  width: 136px;
+  padding: 10px 15px;
+  margin: 0 10px;
 }
