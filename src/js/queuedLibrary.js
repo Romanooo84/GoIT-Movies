@@ -42,7 +42,7 @@ const showQueued = async () => {
       })
       .catch(error => console.error(error));
   } else {
-    moviesListQ.innerHTML = '<p>Brak obejrzanych filmów.</p>';
+    moviesListQ.innerHTML = `<img src="https://i.pinimg.com/originals/4a/06/ef/4a06efb5a2f39feaa2f81b9f3d179a94.gif"/>`;
   }
 };
 

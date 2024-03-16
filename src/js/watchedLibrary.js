@@ -41,7 +41,7 @@ const showWatched = async () => {
       })
       .catch(error => console.error(error));
   } else {
-    moviesListW.innerHTML = '<p>Brak obejrzanych filmów.</p>';
+    moviesListW.innerHTML = `<img src="https://i.pinimg.com/originals/4a/06/ef/4a06efb5a2f39feaa2f81b9f3d179a94.gif"/>`;
   }
 };
 
