@@ -12,6 +12,7 @@ const closeModal = () => {
 };
 
 export const showWatched = async () => {
+  const moviesListQ = document.querySelector('.library-queue');
   const moviesInStorageW = localStorage.getItem('watched');
   const moviesListW = document.querySelector('.library-watched');
   moviesListQ.style.display = 'none';
@@ -125,3 +126,8 @@ document.addEventListener('keydown', e => {
     closeModal();
   }
 });
+if (
+  showWatchedButton.addEventListener('click', () => {
+    moviesListW.innerHTML = `<img src="https://i.pinimg.com/originals/4a/06/ef/4a06efb5a2f39feaa2f81b9f3d179a94.gif"/>`;
+  })
+);

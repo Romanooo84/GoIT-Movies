@@ -10,10 +10,12 @@ const closeModal = () => {
   modalWindow.classList.add('hidden');
   modalOverlay.classList.remove('active');
 };
-
 export const showQueued = async () => {
-  const moviesInStorageQ = localStorage.getItem('queue');
+  const moviesListW = document.querySelector('.library-watched');
   const moviesListQ = document.querySelector('.library-queue');
+
+  const moviesInStorageQ = localStorage.getItem('queue');
+
   moviesListW.style.display = 'none';
   moviesListQ.style.display = 'flex';
 
@@ -49,7 +51,6 @@ export const showQueued = async () => {
           .join('');
 
         moviesListQ.innerHTML = moviesMarkup;
-        
       })
       .catch(error => console.error(error));
   } else {
@@ -126,3 +127,9 @@ document.addEventListener('keydown', e => {
 
 const showQueuedButton = document.querySelector('.header-library-button-queue');
 showQueuedButton.addEventListener('click', showQueued);
+
+if (
+  showQueuedButton.addEventListener('click', () => {
+    moviesListQ.innerHTML = `<img src="https://i.pinimg.com/originals/4a/06/ef/4a06efb5a2f39feaa2f81b9f3d179a94.gif"/>`;
+  })
+);
