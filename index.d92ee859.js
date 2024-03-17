@@ -39,7 +39,7 @@ let t;function e(t,e,i,a){Object.defineProperty(t,e,{get:i,set:a,enumerable:!0,c
       <dd>${e.overview}</dd>
       </div>
       <div class="modal-button-window">
-      <button class="button-standard modal-button" data-movie-id="${t}" type="button" class="add-to-watched" id="watched-btn">ADD TO WATCHED</button>
+      <button class="button-standard modal-button modal-button__queue" data-movie-id="${t}" type="button" class="add-to-watched" id="watched-btn">ADD TO WATCHED</button>
       <button class="button-standard modal-button modal-button__queue" data-movie-id="${t}" type="button" class="add-to-queue" id="queue-button">ADD TO QUEUE</button>
       </div>
     </div>
@@ -60,4 +60,4 @@ let t;function e(t,e,i,a){Object.defineProperty(t,e,{get:i,set:a,enumerable:!0,c
             </div>
             </div>
           </li>`)).join("")),D=async e=>{e.preventDefault(),t=e.target.elements.searchQuery.value.trim(),W=1,await E(t,W).then(e=>{if(""===t||e.results.length<=0)I.style.opacity="1";else{let t=X(e);L.innerHTML=t,I.style.opacity="0"}}).catch(t=>console.log(t)),S.reset()};function F(){document.getElementById("loader").style.display="flex"}function j(){document.getElementById("loader").style.display="none"}S.addEventListener("submit",D),A.addEventListener("click",async e=>{try{let e=await E(t,W+1);if(e.totalPages>=W+1){W++;let t=X(e);L.innerHTML=t}else i(C).Notify.info("You have reached the end of the search results.")}catch(t){console.error("Error fetching popular movies:",t)}}),M.addEventListener("click",async e=>{try{if(W>1){let e=await E(t,W-1);if(e.totalPages>=W-1){W--;let t=X(e);L.innerHTML=t}}}catch(t){console.error("Error fetching popular movies:",t)}}),window.goToPageQ=function(e){W=e,E(t,e).then(t=>{X(t),L.innerHTML=X(t)}).catch(t=>{console.error("Error fetching popular movies:",t)})},document.getElementById("searchForm").addEventListener("submit",function(t){t.preventDefault,F(),setTimeout(function(){j()},1e3)}),F(),setTimeout(function(){j()},1e3);
-//# sourceMappingURL=index.d41c1e98.js.map
+//# sourceMappingURL=index.d92ee859.js.map
