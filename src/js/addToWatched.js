@@ -9,7 +9,7 @@ import Notiflix from 'notiflix';
 
 const modal = document.querySelector('.modal-window');
 
-const addToWatched = event => {
+const manageWatched = event => {
   // Sprawdzanie, czy kliknięty element jest przyciskiem 'Add to watched'
   if (event.target.id === 'watched-btn') {
     const movieId = event.target.getAttribute('data-movie-id');
@@ -20,12 +20,23 @@ const addToWatched = event => {
 
       // Sprawdzanie, czy film jest już na liście, aby uniknąć duplikatów
       const isMovieAlreadyAdded = watched.some(movie => movie.id === movieId);
-      if (!isMovieAlreadyAdded) {
-        watched.push({ id: movieId });
-        localStorage.setItem('watched', JSON.stringify(watched));
-        Notiflix.Notify.success('Video has been added to the watched list');
-      } else {
-        Notiflix.Notify.warning('This video is already in your watched list.');
+      if (event.target.classList.contains('add')) {
+        if (!isMovieAlreadyAdded) {
+          watched.push({ id: movieId });
+          localStorage.setItem('watched', JSON.stringify(watched));
+          Notiflix.Notify.success('Video has been added to the queued list');
+        } else {
+          Notiflix.Notify.warning('This video is already in your queue.');
+        }
+      } else if (event.target.classList.contains('remove')) {
+        if (isMovieAlreadyAdded) {
+          watched = watched.filter(movie => movie.id !== movieId);
+          localStorage.setItem('watched', JSON.stringify(watched));
+
+          Notiflix.Notify.info('Video has been removed from the watched list');
+        } else {
+          Notiflix.Notify.warning('This video is not in your watched list.');
+        }
       }
     } else {
       Notiflix.Notify.failure('Your browser does not support Local Storage.');
@@ -34,4 +45,4 @@ const addToWatched = event => {
 };
 
 // Dodanie nasłuchiwacza do całego modalu, ale reagowanie tylko na przycisk 'Add to watched'
-modal.addEventListener('click', addToWatched);
+modal.addEventListener('click', manageWatched);

@@ -11,7 +11,7 @@ const closeModal = () => {
   modalOverlay.classList.remove('active');
 };
 
-const showQueued = async () => {
+export const showQueued = async () => {
   const moviesInStorageQ = localStorage.getItem('queue');
   const moviesListQ = document.querySelector('.library-queue');
   moviesListW.style.display = 'none';
@@ -49,6 +49,7 @@ const showQueued = async () => {
           .join('');
 
         moviesListQ.innerHTML = moviesMarkup;
+        
       })
       .catch(error => console.error(error));
   } else {
@@ -93,8 +94,8 @@ const handleQueuedItemClick = async e => {
           <dd>${movieDetails.overview}</dd>
         </div>
         <div class="modal-button-window">
-          <button class="button-standard modal-button" data-movie-id="${movieId}" type="button" class="add-to-watched" id="watched-btn">ADD TO WATCHED</button>
-          <button class="button-standard modal-button modal-button__queue" data-movie-id="${movieId}" type="button" class="add-to-queue" id="queue-button">REMOVE FROM QUEUE</button>
+          <button class="button-standard modal-button add" data-movie-id="${movieId}" type="button" class="add-to-watched"  id="watched-btn">ADD TO WATCHED</button>
+          <button class="button-standard modal-button modal-button__queue remove" data-movie-id="${movieId}" type="button" class="add-to-queue"  id="queue-button">REMOVE FROM QUEUE</button>
         </div>
       </div>`;
 

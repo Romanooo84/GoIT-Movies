@@ -11,7 +11,7 @@ const closeModal = () => {
   modalOverlay.classList.remove('active');
 };
 
-const showWatched = async () => {
+export const showWatched = async () => {
   const moviesInStorageW = localStorage.getItem('watched');
   const moviesListW = document.querySelector('.library-watched');
   moviesListQ.style.display = 'none';
@@ -96,8 +96,8 @@ const handleWatchedItemClick = async e => {
           <dd>${movieDetails.overview}</dd>
         </div>
         <div class="modal-button-window">
-          <button class="button-standard modal-button" data-movie-id="${movieId}" type="button" class="add-to-watched" id="watched-btn">REMOVE FROM WATCHED</button>
-          <button class="button-standard modal-button modal-button__queue" data-movie-id="${movieId}" type="button" class="add-to-queue" id="queue-button">ADD TO QUEUE</button>
+          <button class="button-standard modal-button remove" data-movie-id="${movieId}" type="button" class="add-to-watched" id="watched-btn">REMOVE FROM WATCHED</button>
+          <button class="button-standard modal-button modal-button__queue add" data-movie-id="${movieId}" type="button" class="add-to-queue" id="queue-button">ADD TO QUEUE</button>
         </div>
       </div>`;
 
