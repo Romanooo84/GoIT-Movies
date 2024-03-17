@@ -2,12 +2,24 @@
 .paginatorPopular,
 .paginatorQuery {
   display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .paginatorPopular ul,
 .paginatorQuery ul {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 20px;
 }
 
 .paginatorPopular ul li,
@@ -24,6 +36,24 @@
 .paginatorPopular ul li.active,
 .paginatorQuery ul li.active {
   background-color: #ff6b08;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+}
+
+.paginatorPopular ul li:hover:not(.active),
+.paginatorQuery ul li:hover:not(.active) {
+  color: #ff6b08;
+  transition: color 0.3s ease;
+}
+
+.page {
+  width: 40px;
+  height: 40px;
 }
 
 section {
@@ -254,5 +284,9 @@ section {
 
   .details {
     margin: -5px 0 0 0;
+  }
+
+  .dots {
+    display: none;
   }
 }

@@ -170,11 +170,16 @@ function paginator(totalPages, page) {
     prevPage.style.display = 'block';
   }
 
-  if (page > 3) {
+  // if (page > 3) {
+  //   liTag += `<li class="numb" onclick="goToPage(1)"><span>1</span></li>`;
+  //   if (page > 3) {
+  //     liTag += `<li class="dots"><span>...</span></li>`;
+  //   }
+  // }
+
+  if (page > 3 && !(window.innerWidth >= 320 && window.innerWidth <= 767)) {
     liTag += `<li class="numb" onclick="goToPage(1)"><span>1</span></li>`;
-    if (page > 3) {
-      liTag += `<li class="dots"><span>...</span></li>`;
-    }
+    liTag += `<li class="dots"><span>...</span></li>`;
   }
 
   if (beforePages < 1) {
@@ -195,12 +200,19 @@ function paginator(totalPages, page) {
     liTag += `<li class="numb ${activeLi}" onclick="goToPage(${pageLength})"><span>${pageLength}</span></li>`;
   }
 
-  if (page < totalPages - 2) {
+  if (page < totalPages - 2 && !(window.innerWidth >= 320 && window.innerWidth <= 767)) {
     if (page < totalPages - 2) {
       liTag += `<li class="dots"><span>...</span></li>`;
     }
     liTag += `<li class="numb" onclick="goToPage(${totalPages})"><span>${totalPages}</span></li>`;
   }
+
+  // if (page < totalPages - 2) {
+  //   if (page < totalPages - 2) {
+  //     liTag += `<li class="dots"><span>...</span></li>`;
+  //   }
+  //   liTag += `<li class="numb" onclick="goToPage(${totalPages})"><span>${totalPages}</span></li>`;
+  // }
 
   if (page < totalPages) {
     nextPage.style.display = 'block';
