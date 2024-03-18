@@ -2,4 +2,4 @@ import './js/watchedLibrary';
 import './js/queuedLibrary';
 import './js/addToQueue.js';
 import './js/addToWatched.js';
-import './js/showLibraryWatched.js'
+import './js/showLibraryWatched.js';
