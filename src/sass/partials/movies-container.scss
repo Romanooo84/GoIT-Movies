@@ -56,6 +56,17 @@
   height: 40px;
 }
 
+.page svg {
+  width: 14px;
+  height: 14px;
+  stroke: black;
+  stroke-width: 0px;
+  fill: #2d2d2d;
+}
+
+.page .arrow-left {
+  transform: rotate(180deg);
+}
 section {
   display: flex;
   flex-direction: column;
