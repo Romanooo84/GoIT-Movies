@@ -7,6 +7,7 @@ Notiflix.Notify.init({
 
 import Notiflix from 'notiflix';
 
+const moviesListW = document.querySelector('.library-watched');
 const modal = document.querySelector('.modal-window');
 
 const manageWatched = event => {
@@ -34,6 +35,11 @@ const manageWatched = event => {
           localStorage.setItem('watched', JSON.stringify(watched));
 
           Notiflix.Notify.info('Video has been removed from the watched list');
+          if (JSON.parse(moviesInStorage).length === 1) {
+            // moviesListW.style.display = 'flex';
+            moviesListW.innerHTML = `<img src="https://i.pinimg.com/originals/4a/06/ef/4a06efb5a2f39feaa2f81b9f3d179a94.gif"/>`;
+          }
+          // showWatched();
         } else {
           Notiflix.Notify.warning('This video is not in your watched list.');
         }

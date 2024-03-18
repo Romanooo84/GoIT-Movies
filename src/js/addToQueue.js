@@ -1,5 +1,4 @@
 import Notiflix from 'notiflix';
-
 const moviesListQ = document.querySelector('.library-queue');
 const modal = document.querySelector('.modal-window');
 
@@ -10,6 +9,7 @@ const manageQueue = event => {
 
     if (typeof Storage !== 'undefined') {
       const moviesInQueue = localStorage.getItem('queue');
+      // console.log(JSON.parse(moviesInQueue).length);
       let queue = moviesInQueue ? JSON.parse(moviesInQueue) : [];
 
       // Sprawdzanie, czy film jest już na liście, aby uniknąć duplikatów lub usuwanie z listy
@@ -26,8 +26,12 @@ const manageQueue = event => {
         if (isMovieAlreadyAdded) {
           queue = queue.filter(movie => movie.id !== movieId);
           localStorage.setItem('queue', JSON.stringify(queue));
-
           Notiflix.Notify.info('Video has been removed from the queued list');
+          if (JSON.parse(moviesInQueue).length === 1) {
+            // moviesListQ.style.display = 'flex';
+            moviesListQ.innerHTML = `<img src="https://i.pinimg.com/originals/4a/06/ef/4a06efb5a2f39feaa2f81b9f3d179a94.gif"/>`;
+          } else {
+          }
         } else {
           Notiflix.Notify.warning('This video is not in your queue.');
         }
