@@ -40,7 +40,9 @@ export const showWatched = async () => {
                   <div class="details">
                     <p class="info-item">
                       <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
-                    </p>
+                    <span class="modal-rates__vote">${movie.vote_average}</span>
+                      </p>
+                    
                   </div>
                 </div>
               </div>

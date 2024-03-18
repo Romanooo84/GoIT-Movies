@@ -42,7 +42,9 @@ export const showQueued = async () => {
                 <div class="details">
                   <p class="info-item">
                     <b>${genres} | ${movie.release_date.slice(0, 4)}</b>
+                    <span class="modal-rates__vote">${movie.vote_average}</span>
                   </p>
+                  
                 </div>
               </div>
             </div>
