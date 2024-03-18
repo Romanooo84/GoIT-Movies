@@ -9,7 +9,7 @@
   font-size: 12px;
   line-height: 1.33;
 
-  &:hover {
+  &:hover, &:focus, &:active {
     background-color: #ff4901;
     transform: scale(0.99);
     box-shadow: 0 0 50px rgba(200, 200, 200, 0.8);
