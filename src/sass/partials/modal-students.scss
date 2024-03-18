@@ -50,8 +50,6 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 2.5rem;
-  overflow: auto;
-  position: relative;
 }
 
 .student-card {
@@ -87,12 +85,13 @@
 .buttons-container {
   display: flex;
   justify-content: center;
-  position: absolute; 
-  bottom: 20px; 
+  position: absolute;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
 }
+
 @media (max-width: 768px) {
   .windows-modal .modal-content {
     width: 90%;
