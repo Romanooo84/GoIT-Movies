@@ -80,6 +80,29 @@
   text-align: justify;
   max-height: 250px;
   overflow: auto;
+
+  /* Ukrywa scrollbar, gdy nie jest w użyciu */
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* Pokazuje scrollbar podczas przewijania */
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  /* Dla Firefox */
+  &:not(:hover) {
+    scrollbar-width: none;
+  }
+
+  &:hover {
+    scrollbar-width: thin;
+  }
 }
 
 .buttons-container {
